@@ -22,10 +22,7 @@
 
     </form>
 
-
-
     <h1>Create Event</h1>
-
     <form action="/api/event" method="post">
       <input type="text" name="title" placeholder="Title" /><br />
       <input type="text" name="description" placeholder="Description" /><br />
@@ -35,8 +32,20 @@
       <input type="text" name="state" placeholder="State" /><br />
 
       <input type="submit" value="create Event" />
-
     </form>
 
+
+
+    <h1>Create User</h1>
+    <form action="/api/user" method="post">
+      <input type="text" name="firstName" placeholder="First Name" /><br />
+      <input type="text" name="lastName" placeholder="Last Name" /><br />
+      <input type="text" name="email" placeholder="Email" /><br />
+      <input type="text" name="username" placeholder="Username" /><br />
+      <input type="password" name="password" placeholder="Password" /><br />
+
+
+      <input type="submit" value="Sign up" />
+    </form>
   </body>
 </html>
