@@ -6,6 +6,10 @@ router.get('/', function(req, res, next) {
 })
 
 router.get('/:page', function(req, res, next) {
+	if (req.params.page == 'sendgrid'){
+		next()
+		return
+	}
 
     res.render(req.params.page, { title: 'Express' })
 

@@ -5,6 +5,10 @@ var bcrypt = require('bcrypt')
 
 router.get('/:action', function(req, res, next){
 	var action = req.params.action
+	if (action == 'sendgrid'){
+		next()
+		return
+	}
 
 	if (action == 'logout'){
 		req.session.reset()

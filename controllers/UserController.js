@@ -65,7 +65,6 @@ module.exports = {
 
 				resolve(user.summary())
 			})
-
 		})
 	},
 
