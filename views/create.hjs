@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ title }}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Create Organization</h1>
+
+    <form action="/api/organization" method="post">
+    	<input type="text" name="name" placeholder="Name" /><br />
+    	<input type="text" name="description" placeholder="Description" /><br />
+    	<input type="text" name="email" placeholder="Email" /><br />
+    	<input type="text" name="phone" placeholder="Phone" /><br />
+    	<input type="text" name="type" placeholder="Type" /><br />
+
+    	<input type="text" name="street" placeholder="Street" /><br />
+    	<input type="text" name="city" placeholder="City" /><br />
+    	<input type="text" name="state" placeholder="State" /><br />
+
+    	<input type="submit" value="create organization" />
+
+    </form>
+
+
+
+    <h1>Create Event</h1>
+
+    <form action="/api/event" method="post">
+      <input type="text" name="title" placeholder="Title" /><br />
+      <input type="text" name="description" placeholder="Description" /><br />
+
+      <input type="text" name="street" placeholder="Street" /><br />
+      <input type="text" name="city" placeholder="City" /><br />
+      <input type="text" name="state" placeholder="State" /><br />
+
+      <input type="submit" value="create Event" />
+
+    </form>
+
+  </body>
+</html>
