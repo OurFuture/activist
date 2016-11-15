@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import superagent from 'superagent'
 import actions from '../actions/actions'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 
 class Organizations extends Component {
 
@@ -15,9 +16,12 @@ class Organizations extends Component {
 	}
 
 	componentDidMount(){
+
+		console.log('componentDidMount: '+JSON.stringify(this.props.location))
+
 		superagent
 		.get('/api/organization')
-		.query(null)
+		.query(this.props.location.query)
 		.set('Accept', 'application/json')
 		.end((err, response) => {
 			if (err){
@@ -63,7 +67,7 @@ class Organizations extends Component {
 	render(){
 		const orgs = this.props.organizations.map((organization, i) => {
 			return (
-				<li key={i}>{organization.name}</li>
+				<li key={i}><Link to={'/organization/'+organization.slug}>{organization.name}</Link></li>
 			)
 		})
 
