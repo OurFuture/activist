@@ -10,6 +10,12 @@ module.exports = {
 			var sortOrder = (params.sort == 'asc') ? 1 : -1
 			delete params['sort']
 
+			var sortBy = (params.sortby == null) ? 'timestamp' : params.sortby
+			delete params['sortby']
+
+			var sort = {}
+			sort[sortBy] = sortOrder
+
 			if (params.lat!=null && params.lng!=null){
 				var distance = 1000/6371 // 6371 is radius of earth in KM
 				params['geo'] = {
@@ -28,7 +34,7 @@ module.exports = {
 			
 			delete params['limit']
 
-			Organization.find(params, null, {limit:parseInt(limit), sort:{timestamp: sortOrder}}, function(err, organizations){
+			Organization.find(params, null, {limit:parseInt(limit), sort:sort}, function(err, organizations){
 				if (err){
 					reject(err)
 					return
