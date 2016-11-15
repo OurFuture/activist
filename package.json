@@ -19,6 +19,7 @@
     "morgan": "~1.7.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-google-maps": "^4.11.0",
     "react-redux": "^4.4.6",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",

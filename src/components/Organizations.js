@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import superagent from 'superagent'
-import store from '../stores/store'
 import actions from '../actions/actions'
 import { connect } from 'react-redux'
 
@@ -27,7 +26,7 @@ class Organizations extends Component {
 			}
 
 			console.log(JSON.stringify(response.body))
-			store.currentStore().dispatch(actions.organizationsReceived(response.body.results))
+			this.props.organizationsReceived(response.body.results)
 		})
 	}
 
@@ -54,7 +53,8 @@ class Organizations extends Component {
 			}
 
 			console.log(JSON.stringify(response.body))
-			store.currentStore().dispatch(actions.organizationCreated(response.body.result))
+//			store.currentStore().dispatch(actions.organizationCreated(response.body.result))
+			this.props.organizationCreated(response.body.result)
 		})
 
 
@@ -95,7 +95,13 @@ const stateToProps = (state) => {
 	return {
 		organizations: state.organization.list
 	}
-
 }
 
-export default connect(stateToProps)(Organizations)
+const dispatchToProps = (dispatch) => {
+	return {
+		organizationsReceived: (organizations) => dispatch(actions.organizationsReceived(organizations)),
+		organizationCreated: (organization) => dispatch(actions.organizationCreated(organization))
+	}
+}
+
+export default connect(stateToProps, dispatchToProps)(Organizations)
