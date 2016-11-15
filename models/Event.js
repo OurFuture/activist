@@ -3,6 +3,7 @@ var mongoose = require('mongoose')
 var EventSchema = new mongoose.Schema({
 	title: {type:String, trim:true, default:''},
 	slug: {type:String, trim:true, default:''},
+	hosts: {type:Array, default:[]},
 	description: {type:String, trim:true, default:''},
 	geo:{
 		type:[Number],
