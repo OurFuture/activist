@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import superagent from 'superagent'
+import { get, post } from '../../utils/Request'
 import actions from '../actions/actions'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
@@ -9,33 +9,22 @@ class Organizations extends Component {
 	constructor(){
 		super()
 		this.state = {
-			organization: {
-
-			}
+			organization: {}
 		}
 	}
 
 	componentDidMount(){
 
-		console.log('componentDidMount: '+JSON.stringify(this.props.location))
-
-		superagent
-		.get('/api/organization')
-		.query(this.props.location.query)
-		.set('Accept', 'application/json')
-		.end((err, response) => {
-			if (err){
-				console.log(err)
-				return
-			}
-
-			console.log(JSON.stringify(response.body))
-			this.props.organizationsReceived(response.body.results)
+		get('/api/organization', this.props.location.query)
+		.then((response) => {
+			this.props.organizationsReceived(response.results)
+		})
+		.catch((e) => {
+			console.error(e)
 		})
 	}
 
 	updateOrganization(event){
-		console.log('updateOrganization: '+event.target.id + '==' + event.target.value)
 		let updated = Object.assign({}, this.state.organization)
 		updated[event.target.id] = event.target.value
 		this.setState({
@@ -44,36 +33,45 @@ class Organizations extends Component {
 	}
 
 	createOrganization(event){
-//		console.log('createOrganization: '+JSON.stringify(this.state.organization))
 
-		superagent
-		.post('/api/organization')
-		.send(this.state.organization)
-		.set('Accept', 'application/json')
-		.end((err, response) => {
-			if (err){
-				console.log(err)
-				return
-			}
-
-			console.log(JSON.stringify(response.body))
-//			store.currentStore().dispatch(actions.organizationCreated(response.body.result))
-			this.props.organizationCreated(response.body.result)
+		post('/api/organization', this.state.organization)
+		.then((response) => {
+			this.props.organizationCreated(response.result)
 		})
+		.catch( (e) => { console.error(e); console.warn("that post err") })
+
+		// superagent
+		// .post('/api/organization')
+		// .send(this.state.organization)
+		// .set('Accept', 'application/json')
+		// .end((err, response) => {
+		// 	if (err){
+		// 		console.log(err)
+		// 		return
+		// 	}
+
+//			store.currentStore().dispatch(actions.organizationCreated(response.body.result))
+			// this.props.organizationCreated(response.body.result)
+		// })
 
 
 	}
 
 	render(){
-		const orgs = this.props.organizations.map((organization, i) => {
+		const orgs = this.props.organizations.map((organization) => {
 			return (
-				<li key={i}><Link to={'/organization/'+organization.slug}>{organization.name}</Link></li>
+				<li key={organization.id}>
+					<Link to={'/organization/'+organization.slug}>{organization.name}</Link>
+					<div>{organization.address.street}</div>
+					<div>{organization.address.state}, {organization.address.city}</div>
+				</li>
 			)
 		})
 
 		return (
 			<div className="container">
 				<ol>{orgs}</ol>
+				This should be its own component:
 				<div>
 					<h2>Create Organization</h2>
 			    	<input onChange={this.updateOrganization.bind(this)} type="text" id="name" name="name" placeholder="Name" /><br />

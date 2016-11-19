@@ -13,7 +13,7 @@ const app = (
 			<Route path="/" component={Organizations}></Route>
 			<Route path="/organization/:slug" component={OrganizationDetail}></Route>
 		</Router>
-	</Provider>	
+	</Provider>
 )
 
 ReactDOM.render(app, document.getElementById('root'))
