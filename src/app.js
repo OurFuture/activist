@@ -2,15 +2,19 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Organizations from './components/Organizations'
 import OrganizationDetail from './components/OrganizationDetail'
+import OrganizationForm from './components/OrganizationForm'
 import { Provider } from 'react-redux'
 import store from './stores/store'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 
-
 const app = (
 	<Provider store={ store.configureStore() }>
 		<Router history={browserHistory}>
+
 			<Route path="/" component={Organizations}></Route>
+
+			<Route path="/add_org" component={OrganizationForm}></Route>
+
 			<Route path="/organization/:slug" component={OrganizationDetail}></Route>
 		</Router>
 	</Provider>
