@@ -11,7 +11,7 @@ router.get('/:page', function(req, res, next) {
 		return
 	}
 
-    res.render(req.params.page, { title: 'Express' })
+    res.render(req.params.page, { title: 'TODO Name Page' })
 
 })
 

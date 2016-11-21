@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router'
 
 import actions from '../actions/actions'
 import { get } from '../../utils/Request'
-import OrganizationListEl from './OrganizationListEl'
 
+import OrganizationListEl from './OrganizationListEl'
 
 class Organizations extends Component {
 
@@ -17,8 +16,7 @@ class Organizations extends Component {
 	}
 
 	componentDidMount(){
-
-		get('/api/organization', this.props.location.query)
+		get('/api/organization', this.props.location ? this.props.location.query : {})
 		.then((response) => {
 			this.props.organizationsReceived(response.results)
 		})
@@ -46,14 +44,15 @@ class Organizations extends Component {
 	// }
 
 	render(){
-		window.foos = OrganizationListEl
-		window.debug_orgs = this.props.organizations
-		const orgs = this.props.organizations.map(OrganizationListEl)
+		const orgs = this.props.organizations.map(org => {
+			return <OrganizationListEl key={org.id} {...org} />
+		})
 
 		return (
-			<div className="container">
-				<ol>{orgs}</ol>
-				<Link to={'/add_org'}>Add Org Form</Link>
+			<div id={this.props.id} className={this.props.className}>
+				<ul className="event-list">
+					{orgs}
+				</ul>
 			</div>
 		)
 	}

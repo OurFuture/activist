@@ -1,0 +1,58 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+.navbar {
+  margin-bottom: 0px;
+}
+
+/*Avoid the #list-container's making navbar-header 15px too wide to the right*/
+.container-fluid > .navbar-header {
+  margin-right: 0px;
+}
+
+.container-fluid {
+  max-height: 100%;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#map {
+  background-color: #8bced4;
+  height: 50vh;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#list-container {
+  background-color: #DBDBDB;
+  max-height: 40vh;
+  /*width: 100%;*/
+  z-index: 5;
+  overflow-y: auto;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+@media(min-width:768px){
+  #map {
+    height: 80vh;
+  }
+  #list-container {
+    max-height: 80vh;
+  }
+}
+
+.result-container {
+  background-color: blue;
+  /*todo*/
+}
+
+.scroll {
+  width: 50px;
+  background: red;
+}
