@@ -9,7 +9,7 @@ const OrganizationsList = props => {
   })
 
   return (
-      <ul className={"event-list"}>
+      <ul className={props.className}>
         {org_els}
       </ul>
   )

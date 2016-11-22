@@ -11,6 +11,7 @@ class Map extends Component {
 	}
 
 	mapDragged(){
+		console.log("map dragged")
 		var latLng = this.state.map.getCenter().toJSON()
 		if (this.props.mapMoved != null)
 			this.props.mapMoved(latLng)
@@ -18,30 +19,31 @@ class Map extends Component {
 
 	handleMarkerClick(marker){
 		console.log('MarkerClick: '+JSON.stringify(marker))
+		console.log("Clicked id: " + marker.id)
 		// browserHistory.push('/team/'+marker.slug)
 
 	}
 
 	render(){
 		var markers = null
-		if (this.props.markers != null){
-			markers = this.props.markers.map((marker, i) => {
-				marker['defaultAnimation'] = this.props.animation
+		if (this.props.organizations != null){
+			markers = this.props.organizations.map(org => {
+				org['defaultAnimation'] = this.props.animation
 				// marker['icon'] = marker.image+'=s60-c'
-				marker['position'] = {
-					lat: marker.geo[0],
-					lng: marker.geo[1]
+				org['position'] = {
+					lat: org.geo[0],
+					lng: org.geo[1]
 				}
 
 		        return (
 		            <Marker
-		            	key={i}
+		            	key={org.id}
 		            	clickable={true}
-		            	// icon={marker.icon}
-		            	label={marker.title}
-		            	title={marker.key}
-		            	onClick={this.handleMarkerClick.bind(this, marker)}
-		            	{...marker} />
+		            	// icon={org.icon}
+		            	label={org.name + 'label'}
+		            	title={org.name + 'title'}
+		            	onClick={this.handleMarkerClick.bind(this, org)}
+		            	{...org} />
 		        )
 			})
 		}

@@ -45,7 +45,8 @@ class Organizations extends Component {
 	render(){
 		const childEls = React.Children.map(this.props.children, (child) => {
 			return React.cloneElement(child, {
-				organizations: this.props.organizations, fooz:"pampelmousse"
+				organizations: this.props.organizations,
+				childClassName: this.props.childClassName
 			})
 		})
 

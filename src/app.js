@@ -24,16 +24,17 @@ class MainPage extends Component {
 			<Nav />
 			<div className="container-fluid">
 
-				<Map
-					id="map"
-					className="col-sm-6"
-					markers={test_markers}
-					zoom={14}
-					center={default_center}
-				/>
+				<Organizations>
+					<Map
+						id="map"
+						className="col-sm-6"
+						zoom={14}
+						center={default_center}
+					/>
+				</Organizations>
 
 				<Organizations id="list-container" className="col-sm-6">
-					<OrganizationsList />
+					<OrganizationsList className="event-list"/>
 				</Organizations>
 
 				<Link to={'/add_org'}>Add Org Form</Link>
