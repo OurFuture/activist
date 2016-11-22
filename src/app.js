@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { Link, Router, Route, IndexRoute, browserHistory } from 'react-router'
 
 import {Organizations, OrganizationDetail,
-	OrganizationListEl, OrganizationForm, Map, Nav } from './components/'
+	OrganizationsList, OrganizationListEl, OrganizationForm, Map, Nav } from './components/'
 
 import store from './stores/store'
 
@@ -14,11 +14,9 @@ const default_center = {
 }
 
 const test_markers = [
-	{ geo:[default_center.lat+0.005, default_center.lng-0.005] },
-	{ geo:[default_center.lat-0.005, default_center.lng+0.005] }
+	{ geo:[default_center.lat+0.005, default_center.lng-0.005], info: "blah" },
+	{ geo:[default_center.lat-0.005, default_center.lng+0.005], info: "blug" }
 ]
-
-window.test_markers = test_markers //DEBUG
 
 class MainPage extends Component {
 	render(){ return(
@@ -34,7 +32,9 @@ class MainPage extends Component {
 					center={default_center}
 				/>
 
-				<Organizations id="list-container" className="col-sm-6" />
+				<Organizations id="list-container" className="col-sm-6">
+					<OrganizationsList />
+				</Organizations>
 
 				<Link to={'/add_org'}>Add Org Form</Link>
 
