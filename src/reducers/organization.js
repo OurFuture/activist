@@ -12,8 +12,12 @@ export default (state = initialState, action) => {
 		case constants.ORGANIZATIONS_RECEIVED:
 //			console.log('ORGANIZATIONS_RECEIVED:')
 
-			// do stuff
+			// set up list
 			newState['list'] = action.organizations
+			// reference by slug
+			action.organizations.forEach(org => {
+				newState['map'][org.slug] = org
+			})
 			return newState
 
 		case constants.ORGANIZATION_CREATED:

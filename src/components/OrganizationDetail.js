@@ -12,8 +12,9 @@ class OrganizationDetail extends Component {
 
 	render(){
 		// find the first matching slug in the state
-		const slug = this.props.params.slug
-		const org = this.props.organizations.list.find((organization) => {return organization.slug == slug})
+		const slug = this.props.params.slug //from router
+		const org = this.props.organizations.map[slug]
+		// const org = this.props.organizations.list.find((organization) => {return organization.slug == slug})
 		if (org == undefined) {
 			return <h1>Unhandled error: Bad link, or org with given slug not in state...</h1>
 		}

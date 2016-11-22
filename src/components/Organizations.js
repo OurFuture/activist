@@ -6,6 +6,30 @@ import { get } from '../../utils/Request'
 
 import OrganizationListEl from './OrganizationListEl'
 
+class OrganizationList extends Component {
+	constructor(){
+		super()
+		this.state = {
+			organization: {}
+		}
+	}
+
+	render(){
+		const orgs = this.props.organizations.map(org => {
+			return <OrganizationListEl key={org.id} {...org} />
+		})
+
+		return (
+			<div id={this.props.id} className={this.props.className}>
+				<ul className="event-list">
+					{orgs}
+				</ul>
+			</div>
+		)
+	}
+
+}
+
 class Organizations extends Component {
 
 	constructor(){
@@ -44,6 +68,11 @@ class Organizations extends Component {
 	// }
 
 	render(){
+		// TODO: support Map or OrganizationList rendering,
+		// whatever gets passed in!
+
+		// OrganizationList would be filled with OrganizationListEl's
+		// Map with Marker's
 		const orgs = this.props.organizations.map(org => {
 			return <OrganizationListEl key={org.id} {...org} />
 		})

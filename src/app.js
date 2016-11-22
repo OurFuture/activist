@@ -3,15 +3,22 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { Link, Router, Route, IndexRoute, browserHistory } from 'react-router'
 
-import Organizations from './components/Organizations'
-import OrganizationDetail from './components/OrganizationDetail'
-import OrganizationListEl from './components/OrganizationListEl'
-import OrganizationForm from './components/OrganizationForm'
-import GeolocationMap from './components/GeolocationMap'
-
-import Nav from './components/Nav'
+import {Organizations, OrganizationDetail,
+	OrganizationListEl, OrganizationForm, Map, Nav } from './components/'
 
 import store from './stores/store'
+
+const default_center = {
+	lat:40.735968,
+	lng:-73.990483
+}
+
+const test_markers = [
+	{ geo:[default_center.lat+0.005, default_center.lng-0.005] },
+	{ geo:[default_center.lat-0.005, default_center.lng+0.005] }
+]
+
+window.test_markers = test_markers //DEBUG
 
 class MainPage extends Component {
 	render(){ return(
@@ -19,10 +26,12 @@ class MainPage extends Component {
 			<Nav />
 			<div className="container-fluid">
 
-				<GeolocationMap
+				<Map
 					id="map"
 					className="col-sm-6"
-					google={window.google}
+					markers={test_markers}
+					zoom={14}
+					center={default_center}
 				/>
 
 				<Organizations id="list-container" className="col-sm-6" />
