@@ -15,6 +15,7 @@ SENDGRID_API_KEY=asdfasdfasdf
 But replace "asdfasdfasdf" with your key/secret.
 
 With Node 6 installed and MongoDB running locally:
+
 1. `cd` into the project directory. 
 2. Do `npm install` to install all dependencies
 3. Do `npm start` or use `nodemon`. If you're changing the frontend stuff be sure to run `webpack -w` in another terminal window.
