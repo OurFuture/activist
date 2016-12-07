@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+  mongo:
+    image: mongo:latest
+
+  web:
+    build: .
+    image: activist-app
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017
+    env_file: .env
+    links:
+      - mongo
+    ports:
+      - "3000:3000"

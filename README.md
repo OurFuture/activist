@@ -1,49 +1,31 @@
 # "Activist" (working title, we need a real title)
 This is a web app to help people find opportunities to get involved in progressive events and organizations near them. It's built in Node+React+Redux+Express+Mongo. Contact Ian if you want to get involved.
 
-# If you have Node + Mongo installed
+# Project setup
 
-First, you will need to make a `.env` file that looks like:
+You will need to copy `example.env` to `.env`:
 
 ```
-GOOGLE_MAPS_API_KEY=asdfasdfasdf
-MONGODB_URI=mongodb://localhost/activist
-SESSION_SECRET=asdfasdfasdf
-SENDGRID_API_KEY=asdfasdfasdf
+cp example.env .env
 ```
 
-But replace "asdfasdfasdf" with your key/secret.
+Now edit `.env` with your API keys and session secret.
+
+# Running the web app
+
+Once the webapp is running you can view it at http://localhost:3000
+
+## With Node + Mongo installed
 
 With Node 6 installed and MongoDB running locally:
 
-1. `cd` into the project directory. 
+1. `cd` into the project directory.
 2. Do `npm install` to install all dependencies
 3. Do `npm start` or use `nodemon`. If you're changing the frontend stuff be sure to run `webpack -w` in another terminal window.
 
-# Alternative: Docker
-1. Install Docker
+## With Docker
+1. Install Docker and Docker Compose
 2. `cd` into the project directory
-3. Set up the container with `docker build -t activist-app .`
-4. Then do this (replace 'asdfasdf' with the real keys):
-
-## TODO: the Docker-mongo connection is not working right now
-
-```
-# run the mongo container
-docker run --name mongo-server -d mongo
-
-# run the app on localhost:3000
-# and connect that to the mongo container
-
-# TODO: this doesn't actually work!
-
-docker run -it \
---name activist-app-instance \
---link mongo-server:mongo \
--e GOOGLE_MAPS_API_KEY='asdfadf' \
--e MONGODB_URI='mongodb://localhost/activist' \
--e SESSION_SECRET='asdfasdf' \
--e SENDGRID_API_KEY='asdfasdf' \
--p 3000:3000 \
-activist-app
-```
+3. Build the docker image with `docker-compose build`
+4. Run the app with `docker-compose up -d`
+5. Stop the app with `docker-compose down`
