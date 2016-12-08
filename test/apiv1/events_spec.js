@@ -1,7 +1,8 @@
 /* eslint-env mocha */
+/* eslint-disable import/no-extraneous-dependencies */
+
 process.env.NODE_ENV = 'test';
 
-// const mongoose = require('mongoose');
 const Event = require('../../models/Event');
 
 const chai = require('chai');
@@ -53,8 +54,10 @@ describe('Events', () => {
           res.body.should.have.keys('confirmation', 'result');
           res.body.confirmation.should.be.eql('success');
           res.body.result.should.have.keys('title', 'slug', 'description', 'address', 'geo', 'timestamp', 'id');
-          res.body.result.geo.should.be.a('array');
-          res.body.result.geo.should.have.length(2);
+
+          res.body.result.geo.should.be.a('array').with.length(2);
+
+          res.body.result.address.should.have.keys('street', 'city', 'state');
           done();
         });
     });
