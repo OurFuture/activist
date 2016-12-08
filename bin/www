@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+// Run the app. Used by npm start.
+
 /**
  * Module dependencies.
  */

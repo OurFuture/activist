@@ -42,6 +42,7 @@ app.use(sessions({
 }))
 app.use(express.static(path.join(__dirname, 'public')))
 
+// App top-level routes
 app.use('/', routes)
 app.use('/api', api)
 app.use('/account', account)

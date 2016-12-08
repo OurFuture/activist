@@ -2,6 +2,14 @@ var express = require('express')
 var router = express.Router()
 var controllers = require('../controllers')
 
+/*********************************************
+Implemented routes in api.js:
+
+GET  /<resource>       =>  controller.get
+GET  /<resource>/<id>  =>  controller.getById
+POST /<resource>       =>  controller.post
+**********************************************/
+
 router.get('/:resource', function(req, res, next) {
 
 	var resource = req.params.resource
@@ -88,7 +96,7 @@ router.post('/:resource', function(req, res, next){
 	    	confirmation: 'fail',
 	    	message: err
 	    })
-	})	
+	})
 })
 
 module.exports = router
