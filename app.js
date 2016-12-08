@@ -8,12 +8,16 @@ var mongoose = require('mongoose')
 var sessions = require('client-sessions')
 require('dotenv').config()
 
-mongoose.connect(process.env.MONGODB_URI, function(err, res){
+const MONGODB_URI = (process.env.NODE_ENV === 'test') ?
+  process.env.MONGODB_TEST_URI
+  : process.env.MONGODB_APP_URI;
+
+mongoose.connect(MONGODB_URI, function(err, res){
   if (err){
-    console.log('DB CONNECTION: '+err)
+    console.log('DB CONNECTION: ' + err)
   }
   else {
-    console.log('DB CONNECTION SUCCESS: '+process.env.MONGODB_URI)
+    console.log('DB CONNECTION SUCCESS: ' + MONGODB_URI)
   }
 })
 
