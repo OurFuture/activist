@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
 var mongoose = require('mongoose')
 var sessions = require('client-sessions')
-require('dotenv').config()
 
 const MONGODB_URI = (process.env.NODE_ENV === 'test') ?
   process.env.MONGODB_TEST_URI
