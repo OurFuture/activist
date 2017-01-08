@@ -3,8 +3,11 @@ FROM node:6-onbuild
 WORKDIR /usr/src/app
 EXPOSE 3000
 
-CMD [ "npm", "start" ]
+COPY package.json ./
+RUN npm install
 
 COPY . /usr/src/app
-RUN touch /usr/src/app/.env
-RUN npm install
+
+RUN npm build
+
+CMD [ "npm", "start" ]
