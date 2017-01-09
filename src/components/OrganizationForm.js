@@ -4,6 +4,9 @@ import { connect } from 'react-redux'
 import actions from '../actions/actions'
 import { post } from '../../utils/Request'
 
+// TODO: this should probably be passed in, not imported
+import { browserHistory } from 'react-router'
+
 class OrganizationForm extends Component {
   // TODO: this code is duplicated in Organizations, make DRY
   constructor(){
@@ -25,10 +28,12 @@ class OrganizationForm extends Component {
     post('/api/organization', this.state.organization)
     .then((response) => {
       this.props.organizationCreated(response.result)
-      // TODO: do something here
-      alert("It's created but nothing happens")
+      // Redirect to root on successful post
+      // XXX: should this -always- go to root? Maybe browserHistory.push('___') should be a prop func
+      // TODO: show "Created org" success flash after redirect
+      browserHistory.push('/')
     })
-    .catch( (e) => { console.error(e) })
+    .catch( (e) => { alert("Error:" + e) })
 
   }
 
